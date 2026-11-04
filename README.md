@@ -178,8 +178,10 @@ subscription-churn-ml-retention-economics/
 │   ├── shap_explainer.py                              # Generación de artefactos visuales SHAP
 │   └── business_strategy.py                           # Segmentación en matriz 2x2 y scoring
 ├── deliverables/
+│   ├── Churn_Retention_Executive_Presentation.pptx    # Deck ejecutivo C-Level de 13 slides (McKinsey/FT)
 │   ├── Churn_Retention_Executive_Deck_Guide.md        # Guion de 13 slides para presentación C-Level
-│   └── Fase_1_y_2_Resumen_Ejecutivo.md                # Bitácora metodológica de auditoría inicial
+│   ├── CHANGELOG_Auditoria_Metodologica.md            # Bitácora metodológica y control de versiones
+│   └── Fase_1_y_2_Resumen_Ejecutivo.md                # Bitácora técnica de auditoría inicial contable
 ├── assets/
 │   ├── 01_logo_vs_revenue_churn_gap.png               # Brecha Logo vs Revenue Churn
 │   ├── 02_tenure_hazard_curve.png                     # Curva de supervivencia y onboarding
