@@ -61,7 +61,7 @@ Todas las decisiones metodológicas, reglas de negocio, hipótesis estadísticas
   - Costo de Falso Negativo ($FN$): $-\$625.30\text{ USD}$ (12 meses de margen bruto perdido).
   - Costo de Falso Positivo ($FP$): $-\$100.00\text{ USD}$ (\$10 contacto + \$90 oferta comercial).
   - Relación de pérdida: $6.25 \text{ a } 1$.
-- **Derivación de Bayes:** $\tau^*_{\text{analítico}} = \frac{\$100}{0.35 \times \$625.30} \approx 0.457$.
+- **Derivación de Bayes:** $\tau^*_{\text{analítico}} = \frac{C_{\text{int}}}{\gamma \cdot V} = \frac{100}{0.35 \times 625.30} \approx 0.457 \quad (45.7\%)$.
 - **Barrido Empírico en Test Set:** Maximización de beneficio en $\tau^* = \mathbf{0.44}$.
   - Rescate de **211 cancelaciones reales (+32 clientes / +17.9% vs corte 0.50)**.
   - LTV Rescatado: **$47,505.55** (+$6,570.75 vs corte 0.50).
