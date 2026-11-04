@@ -74,15 +74,15 @@ Se auditó la totalidad de las 7,043 cuentas únicas del dataset de IBM Watson A
 ### 3.2 Arquitectura del Pipeline y Feature Engineering (`src/feature_engineering.py`)
 Para garantizar reproducibilidad y **cero filtración de datos (*Zero Data Leakage*)**, la partición estratificada Train ($80\%$ - 5,634 filas) / Test Holdout ($20\%$ - 1,409 filas) se ejecutó **antes** de ajustar cualquier transformador. Se desarrolló un transformador modular de `scikit-learn` (`BusinessFeatureEngineer`) que calcula 7 variables de dominio:
 
-| Variable Derivada | Definición Matemática / Lógica | Sentido Comercial y Rol en el Modelo |
+| Variable Derivada | Definición Lógica / Operativa | Sentido Comercial y Rol en el Modelo |
 | :--- | :--- | :--- |
-| `total_addons_count` | $\sum (\text{Addons Activos}) \in [0, 6]$ | Mide la profundidad de adopción del ecosistema digital. |
-| `support_security_index` | $\text{TechSupport} + \text{OnlineSecurity} + \text{DeviceProtection} + \text{Backup} \in [0, 4]$ | Aísla los servicios que generan costo de cambio (*switching cost*) real. |
-| `streaming_to_support_ratio` | $\frac{\text{TV} + \text{Movies}}{\text{support\_security\_index} + 1}$ | Detecta clientes con facturas infladas por ocio pero sin blindaje técnico. |
-| `historical_avg_monthly_charge`| $\frac{\text{TotalCharges}}{\max(\text{tenure}, 1)}$ | Tarifa media histórica pagada por la cuenta. |
-| `price_shock_ratio` | $\frac{\text{MonthlyCharges}}{\text{historical\_avg\_monthly\_charge}}$ | Ratio de inflación tarifaria (>1.10 = pérdida de descuentos promocionales). |
-| `is_auto_pay` | $\mathbb{I}(\text{PaymentMethod} \in \{\text{Bank transfer, Credit card}\})$ | Indicador de cero fricción en el cobro recurrente. |
-| `unprotected_fiber_flag` | $\text{Fiber optic} \land (\text{TechSupport}=\text{'No'}) \land (\text{Security}=\text{'No'})$ | Bandera de máxima vulnerabilidad operativa en el P&L. |
+| `total_addons_count` | Suma de Addons Activos `[0 a 6]` | Mide la profundidad de adopción del ecosistema digital. |
+| `support_security_index` | `TechSupport + OnlineSecurity + DeviceProtection + Backup` `[0 a 4]` | Aísla los servicios que generan costo de cambio (*switching cost*) real. |
+| `streaming_to_support_ratio` | `(StreamingTV + StreamingMovies) / (support_security_index + 1)` | Detecta clientes con facturas infladas por ocio pero sin blindaje técnico. |
+| `historical_avg_monthly_charge`| `TotalCharges / max(tenure, 1)` | Tarifa media histórica pagada por la cuenta. |
+| `price_shock_ratio` | `MonthlyCharges / historical_avg_monthly_charge` | Ratio de inflación tarifaria (>1.10 = pérdida de descuentos promocionales). |
+| `is_auto_pay` | Indicador binario si `PaymentMethod` es automático | Cero fricción cognitiva en el cobro recurrente mensual. |
+| `unprotected_fiber_flag` | `Fiber optic` sin `TechSupport` ni `OnlineSecurity` | Bandera de máxima vulnerabilidad operativa en el P&L. |
 
 ---
 
